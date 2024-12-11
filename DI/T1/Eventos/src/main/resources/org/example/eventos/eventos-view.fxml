@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="panelGeneral" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.eventos.controller.EventosController">
+   <top>
+      <TextField fx:id="textoNumeros" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <GridPane fx:id="panelNumeros" minHeight="100.0" minWidth="100.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnUno" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="1" GridPane.valignment="CENTER" />
+            <Button fx:id="btnDos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="2" GridPane.columnIndex="1" />
+            <Button fx:id="btnTres" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="3" GridPane.rowIndex="1" />
+            <Button fx:id="btnCuatro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox fx:id="panelOperaciones" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnIzquierda" mnemonicParsing="false" />
+            <Button fx:id="btnIgual" mnemonicParsing="false" />
+            <Button fx:id="btnSuma" mnemonicParsing="false" />
+            <Button fx:id="btnBorrar" mnemonicParsing="false" />
+            <Button fx:id="btnDerecha" mnemonicParsing="false" />
+         </children>
+      </HBox>
+   </bottom>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <left>
+      <VBox fx:id="panelIzquierdo" alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label minHeight="0.0" minWidth="0.0" text="Lado izquierdo" />
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox fx:id="panelDerecho" alignment="CENTER" minHeight="0.0" minWidth="0.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea fx:id="registro" editable="false" prefWidth="150.0" promptText="registro de las operaciones" wrapText="true">
+
+            </TextArea>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
