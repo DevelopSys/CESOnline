@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.agenda.databinding.ActivityMainBinding
+import com.example.agenda.dataset.Dataset
+import com.example.agenda.ui.activity.RegisterActivity
+import com.example.agenda.ui.activity.HomeActivity
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -25,14 +25,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             binding.botonRegistro.id -> {
-
+                val intent: Intent = Intent(applicationContext, RegisterActivity::class.java)
+                startActivity(intent)
             }
 
             binding.botonLogin.id -> {
                 // campos de texto, rellenos?
                 if (binding.editPass.text.isNotEmpty() && binding.editNombre.text.isNotEmpty()) {
                     // buscar en la base dato admin@gmail.com 1234
-                    if (binding.editPass.text.toString()
+                    val correoUsuario = binding.editNombre.text.toString()
+                    val passUsuario = binding.editPass.text.toString()
+                    /*if (binding.editPass.text.toString()
                             .equals("1234") && binding.editNombre.text.toString()
                             .equals("admin@gmail.com", true)
                     ) {
@@ -45,6 +48,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 binding.editNombre.text.toString(),
                                 binding.editPass.text.toString()
                             )
+                        )
+
+                        startActivity(intent)
+                    }*/
+                    val usuarioLogin = Dataset.comprobarLogin(correoUsuario, passUsuario)
+                    if (usuarioLogin != null) {
+                        val intent: Intent = Intent(applicationContext, HomeActivity::class.java);
+                        intent.putExtra(
+                            "usuario",
+                            usuarioLogin
                         )
 
                         startActivity(intent)
@@ -64,5 +77,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }
             }
         }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding.editPass.text.clear()
+        binding.editNombre.text.clear()
+        binding.checkRecordar.isChecked = false
     }
 }
