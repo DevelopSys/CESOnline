@@ -2,6 +2,7 @@ package org.example.gestor.model;
 
 import java.io.Serializable;
 
+
 public class Liga implements Serializable {
     private String idLeague;
     private String strLeague;

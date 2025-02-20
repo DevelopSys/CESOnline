@@ -16,13 +16,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.gestor.MyApp;
-import org.example.gestor.data.DataSet;
+import org.example.gestor.dao.UsuarioDAO;
 import org.example.gestor.model.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class RegisterController implements Initializable {
 
@@ -61,6 +60,8 @@ public class RegisterController implements Initializable {
 
     private ToggleGroup grupoGenero;
 
+    private UsuarioDAO usuarioDAO;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -97,10 +98,12 @@ public class RegisterController implements Initializable {
                     if (checkDisponibilidad.isSelected()){
                         disponibilidad = textoDisponibilidad.getText();
                     }
-                    Usuario usuario = new Usuario(nombre,correo,profesion,pass,genero,disponibilidad);
+                    Usuario usuario = new Usuario(nombre,correo,profesion,pass,disponibilidad);
+                    usuarioDAO.agregarUsuario(usuario);
                     // cambiamos de pantalla
                     System.out.println("Registrando usuario");
-                    DataSet.listaUsuarios.add(usuario);
+                    // DataSet.listaUsuarios.add(usuario);
+
                     limpiarDatos();
 
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -139,6 +142,7 @@ public class RegisterController implements Initializable {
     }
 
     private void instancias() {
+        usuarioDAO = new UsuarioDAO();
         grupoGenero = new ToggleGroup();
         grupoGenero.getToggles().setAll(radioFemenino, radioMasculino);
         listaProfesiones = FXCollections.observableArrayList();

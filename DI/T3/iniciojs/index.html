@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="./utils/style.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Primera pagina con JS para DI</h1>
+      <p>
+        Esta pagina servida para poder linkar un js y hacer dinamismo dentro de
+        la pagina. Los conceptos que vamos a ver son
+      </p>
+      <ul class="list-group">
+        <li class="list-group-item">1. Integrar</li>
+        <li class="list-group-item">2. Variables</li>
+        <li class="list-group-item">3. Sentencis</li>
+        <li class="list-group-item">4. Estructuras almacenamiento</li>
+        <li class="list-group-item">5. Dinamismo</li>
+      </ul>
+      <input class="form-control mb-3" />
+      <button type="button" class="btn btn-primary mt-4" id="botonIniciar">
+        Avanzar
+      </button>
+
+      <div class="row mt-4">
+        <!-- 12 -->
+        <div class="col">
+          <h3>Formulario de alumno</h3>
+          <input
+            id="inputNombre"
+            placeholder="introduce tu nombre"
+            type="text"
+            class="form-control mb-3"
+          />
+          <input
+            id="inputApellido"
+            placeholder="introduce tu apellido"
+            type="text"
+            class="form-control mb-3"
+          />
+          <input
+            id="inputTelefono"
+            placeholder="introduce tu telefono"
+            type="tel"
+            class="form-control mb-3"
+          />
+
+          <input
+            id="inputCorreo"
+            placeholder="introduce tu correo"
+            type="text"
+            class="form-control mb-3"
+          />
+
+          <select class="form-select mb-3" id="selectProfesion">
+            <option value="1">Profesor</option>
+            <option value="2">Autonomo</option>
+            <option value="3">Comercial</option>
+          </select>
+
+          <button id="botonEnviar" class="btn btn-primary">Enviar</button>
+          <button id="botonVaciar" class="btn btn-primary">Vaciar lista</button>
+        </div>
+        <div class="col">
+          <h3>Listado de alumnos</h3>
+          <ul class="list-group">
+            <!-- crear un li INNER HTML-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- comentario HTML de codigo -->
+    <script>
+      /* comentario JS */
+      // console.log("Primer mensaje desde JS");
+    </script>
+    <script src="./utils/index.js"></script>
+  </body>
+</html>

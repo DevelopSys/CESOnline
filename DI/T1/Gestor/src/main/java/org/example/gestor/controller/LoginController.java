@@ -14,16 +14,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.gestor.MyApp;
+import org.example.gestor.dao.GeneroDAO;
+import org.example.gestor.dao.UsuarioDAO;
 import org.example.gestor.data.DataSet;
+import org.example.gestor.model.Genero;
 import org.example.gestor.model.Usuario;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class LoginController implements Initializable, EventHandler<ActionEvent> {
 
@@ -44,6 +45,10 @@ public class LoginController implements Initializable, EventHandler<ActionEvent>
 
     private Task<Void> tareaSecundaria;
 
+    private UsuarioDAO usuarioDAO;
+    private GeneroDAO generoDAO;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instancias();
@@ -59,6 +64,8 @@ public class LoginController implements Initializable, EventHandler<ActionEvent>
     }
 
     private void instancias() {
+        usuarioDAO = new UsuarioDAO();
+        generoDAO = new GeneroDAO();
         tareaSecundaria = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -105,10 +112,14 @@ public class LoginController implements Initializable, EventHandler<ActionEvent>
         Node node = (Node) event.getSource();
         if (node == btnLogin) {
 
+
             if (!editCorreo.getText().isEmpty() && !editPass.getText().isEmpty()) {
-                Usuario usuario = DataSet.getUsuario(editCorreo.getText().toString(), editPass.getText().toString());
+                // SELECT * FROM usuarios WHERE correo = correo AND pass = pass
+                Usuario usuario = usuarioDAO.getUsuario(editCorreo.getText(), editPass.getText());
+                // Usuario usuario = DataSet.getUsuario(editCorreo.getText().toString(), editPass.getText().toString());
                 // cuando el usuario != null
                 if (usuario != null) {
+                    System.out.println("El genero del usaurio logeado es :"+usuario.getGenero().getNombre());
                     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                     alerta.setTitle("Login OK");
                     alerta.setContentText("Vas a entrar al sistema");
@@ -124,10 +135,12 @@ public class LoginController implements Initializable, EventHandler<ActionEvent>
                 }
 
             } else {
-                Alert alerta = new Alert(Alert.AlertType.WARNING);
+                generoDAO.getUsuarios();
+                /*Alert alerta = new Alert(Alert.AlertType.WARNING);
                 alerta.setTitle("Error");
                 alerta.setContentText("Error, faltan datos por rellenar");
-                alerta.show();
+                alerta.show();*/
+
             }
 
         } else if (node == btnRegistro) {

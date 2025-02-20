@@ -11,6 +11,10 @@
         android:id="@+id/menu_informacion"
         android:title="Información"
         />
+    <item
+        android:id="@+id/menu_datos"
+        android:title="Sacar datos"
+        />
     <item android:title="Acciones">
         <menu>
             <item android:title="Accion 1"

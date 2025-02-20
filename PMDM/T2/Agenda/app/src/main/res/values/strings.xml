@@ -4,4 +4,10 @@
         <item>Administrador</item>
         <item>Usuario</item>
     </string-array>
+    <string-array name="tratamiento">
+        <item>Sr</item>
+        <item>Sra</item>
+        <item>D</item>
+        <item>Dña</item>
+    </string-array>
 </resources>

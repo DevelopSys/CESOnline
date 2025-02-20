@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.transition.Visibility
 import com.example.agenda.R
 import com.example.agenda.databinding.ActivityRegisterBinding
-import com.example.agenda.dataset.Dataset
+import com.example.agenda.dataset.DataSet
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
@@ -30,10 +30,10 @@ class RegisterActivity : AppCompatActivity() {
                         .equals("superpass")
                 ) {
 
-                    Dataset.insertarUsuario(correo, pass, perfil)
+                    DataSet.insertarUsuario(correo, pass, perfil)
                     finish()
                 } else if (perfil.equals("Usuario")) {
-                    Dataset.insertarUsuario(correo, pass, perfil)
+                    DataSet.insertarUsuario(correo, pass, perfil)
                     finish()
                 } else {
                     Snackbar.make(binding.root, "Fallo de registro", Snackbar.LENGTH_SHORT).show()

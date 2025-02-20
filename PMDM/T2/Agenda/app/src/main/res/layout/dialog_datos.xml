@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="64dp"
+    android:background="@android:color/holo_orange_light"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tituloDialogo"
+        android:text="Por favor Borja completa tus datos"
+        android:textSize="25sp"
+
+        />
+
+    <EditText
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Por favor introduce tu apellido"
+        android:id="@+id/editApellido"
+        />
+    <EditText
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Por favor introduce tu direccion"
+        android:id="@+id/editDireccion"
+        />
+
+    <EditText
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Por favor introduce tu telefono"
+        android:id="@+id/editTelefono"
+        />
+    <Spinner
+        android:entries="@array/perfiles"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerTratamiento"
+        />
+
+    <Button
+        android:layout_marginTop="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:id="@+id/botonActualizar"
+        />
+
+</LinearLayout>

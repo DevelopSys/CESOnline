@@ -1,0 +1,20 @@
+<h3>NG IF</h3>
+<p>Me permite modificar el HTML dependiendo de una condición lógica</p>
+<button class="btn btn-primary mb-4" (click)="mostrar = !mostrar">
+  Mostrar
+</button>
+<div class="alert alert-primary" role="alert" *ngIf="mostrar">
+  Esta alerta saldré en determinados momentos
+</div>
+
+<ng-container *ngIf="mostrar; else elseTemplate">
+  <div class="alert alert-secondary" role="alert">
+    A continuación se muestra el componente listado
+  </div>
+  <app-list></app-list>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="alert alert-danger" role="alert">
+    No se mostrará nada de inicio
+  </div>
+</ng-template>

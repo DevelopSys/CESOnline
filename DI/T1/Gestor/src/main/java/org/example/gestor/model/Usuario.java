@@ -1,79 +1,48 @@
 package org.example.gestor.model;
 
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
 import java.io.Serializable;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
-
+@Entity
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column
     private String nombre;
+    @Column
     private String correo;
+    @Column
     private String profesion;
+    @Column
     private String pass;
-    private String genero;
+    @Column
     private String disponibilidad;
 
-    public Usuario() {
-    }
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_genero")
+    private Genero genero;
 
-    public Usuario(String nombre, String correo, String profesion, String pass, String genero, String disponibilidad) {
+
+    public Usuario(String nombre, String correo, String profesion, String pass, String disponibilidad) {
         this.nombre = nombre;
         this.correo = correo;
         this.profesion = profesion;
         this.pass = pass;
-        this.genero = genero;
-        this.disponibilidad = disponibilidad;
-    }
-
-    // getter setter constructorAll constructorNada
-
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getProfesion() {
-        return profesion;
-    }
-
-    public void setProfesion(String profesion) {
-        this.profesion = profesion;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getDisponibilidad() {
-        return disponibilidad;
-    }
-
-    public void setDisponibilidad(String disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 }

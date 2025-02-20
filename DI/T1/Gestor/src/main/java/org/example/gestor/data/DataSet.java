@@ -9,7 +9,7 @@ public class DataSet {
 
     public static void iniciarLista(){
         // String nombre, String correo, String profesion, String pass, String genero, String disponibilidad
-        listaUsuarios.add(new Usuario("Borja","borja@gmail.com","profesor","123","Masculino","false"));
+        listaUsuarios.add(new Usuario("Borja","borja@gmail.com","profesor","Masculino","false"));
     }
 
     public static Usuario getUsuario(String correo, String pass){

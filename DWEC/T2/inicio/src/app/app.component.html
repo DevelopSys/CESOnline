@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h1>Inicio Angular</h1>
+  <img [src]="logo" style="width: 30%" />
+  <input
+    placeholder="introduce tu nombre"
+    class="form-control"
+    [(ngModel)]="nombre"
+  />
+  <!-- #input
+    (keyup)="detectarPulsacion($event)" -->
+  <input
+    placeholder="introduce tu apellido"
+    class="form-control"
+    [(ngModel)]="apellido"
+  />
+  <select class="form-select" [(ngModel)]="genero">
+    <option>Selecciona genero</option>
+    <option>Masculino</option>
+    <option>Femenino</option>
+  </select>
+  <button class="btn btn-primary mt-4" (click)="limpiarDatos()">
+    Confirmar
+  </button>
+  <p class="mt-4">
+    Primera app realizada en Angular por {{ nombre }} {{ apellido }} para la
+    asignatura {{ asignatura }}
+  </p>
+
+  <!-- en js tendria que hacer? querySelector variable.textContent = XXXXX -->
+  <!-- en js tendria que hacer? querySelector.addEventListener() variable.textContent = XXXXX -->
+  <h2>Los componentes son:</h2>
+
+  <div class="row">
+    <app-home class="col mt-4"></app-home>
+    <app-list class="col mt-4"></app-list>
+  </div>
+</div>

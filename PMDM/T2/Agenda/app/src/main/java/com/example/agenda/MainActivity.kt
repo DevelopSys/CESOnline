@@ -2,11 +2,12 @@ package com.example.agenda
 
 import android.content.Intent
 import android.os.Bundle
+import com.example.agenda.dataset.DataSet
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import com.example.agenda.databinding.ActivityMainBinding
-import com.example.agenda.dataset.Dataset
+
 import com.example.agenda.ui.activity.RegisterActivity
 import com.example.agenda.ui.activity.HomeActivity
 import com.google.android.material.snackbar.Snackbar
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                         startActivity(intent)
                     }*/
-                    val usuarioLogin = Dataset.comprobarLogin(correoUsuario, passUsuario)
+                    val usuarioLogin = DataSet.comprobarLogin(correoUsuario, passUsuario)
                     if (usuarioLogin != null) {
                         val intent: Intent = Intent(applicationContext, HomeActivity::class.java);
                         intent.putExtra(
@@ -83,6 +84,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         super.onRestart()
         binding.editPass.text.clear()
         binding.editNombre.text.clear()
-        binding.checkRecordar.isChecked = false
+
     }
 }

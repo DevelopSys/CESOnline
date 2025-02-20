@@ -2,7 +2,7 @@ package com.example.agenda.dataset
 
 import com.example.agenda.model.Usuario
 
-class Dataset {
+class DataSet {
 
     companion object {
 

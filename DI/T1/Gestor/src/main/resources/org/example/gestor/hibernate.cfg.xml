@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="current_session_context_class">thread</property>
+        <property name="connection.url">jdbc:mysql://localhost/gestor_online</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
+        <property name="connection.drive_class">com.mysql.jdbc.Driver</property>
+        <mapping class="org.example.gestor.model.Usuario"/>
+        <mapping class="org.example.gestor.model.Genero"/>
+        <mapping class="org.example.gestor.model.Liga"/>
+        <mapping class="org.example.gestor.model.Equipo"/>
+    </session-factory>
+</hibernate-configuration>

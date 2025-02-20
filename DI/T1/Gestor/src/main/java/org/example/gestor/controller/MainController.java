@@ -9,10 +9,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.example.gestor.model.Equipo;
 import org.example.gestor.model.Liga;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,15 +29,25 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
+    private ImageView imagenDetalle;
+    @FXML
     private Label textoPrincipal;
+
+    @FXML
+    private TableView<Equipo> tablaClasificacion;
+
+    private ObservableList<Equipo> listaEquiposTabla;
+
+    @FXML
+    private TableColumn columnaPuesto, columnaEquipo, columnaPuntos;
 
     @FXML
     private ComboBox<Liga> comboLigas;
     private ObservableList<Liga> listaLigasCombo;
 
     @FXML
-    private ListView<Liga> listViewLigas;
-    private ObservableList<Liga> listaLigasListView;
+    private ListView<String> listViewLigas;
+    private ObservableList<String> listaLigasListView;
 
     @FXML
     private Button botonConsulta;
@@ -87,14 +98,31 @@ public class MainController implements Initializable {
                 // comboLigas.getValue() == null
                 if (listViewLigas.getSelectionModel().getSelectedIndex() == -1) {
                     // Alert con el aviso de que no hay nada seleccionado
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setContentText("No hay seleccion");
+                    alert.show();
                 } else {
-                    Liga liga = listViewLigas.getSelectionModel().getSelectedItem();
-
-
-                    // Liga liga = comboLigas.getValue();
-                    // Liga liga = comboLigas.getSelectionModel().getSelectedItem();
-                    // System.out.println(liga.getId());
-                    // System.out.println(liga.getNombre());
+                    String urlStr = String.format("https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=%s&s=%s",
+                            comboLigas.getSelectionModel().getSelectedItem().getIdLeague(),
+                            listViewLigas.getSelectionModel().getSelectedItem()
+                    );
+                    try {
+                        listaEquiposTabla.clear();
+                        URL url = new URL(urlStr);
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                        JSONObject jsonObject = new JSONObject(reader.readLine());
+                        JSONArray table = jsonObject.getJSONArray("table");
+                        Gson gson = new Gson();
+                        for (int i = 0; i < table.length(); i++) {
+                            JSONObject team = table.getJSONObject(i);
+                            Equipo equipo = gson.fromJson(team.toString(), Equipo.class);
+                            listaEquiposTabla.add(equipo);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
             }
@@ -103,22 +131,51 @@ public class MainController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Liga> observable,
                                 Liga oldValue, Liga newValue) {
+                // System.out.println(newValue.getIdLeague());
+                listaLigasListView.clear();
+                String urlString = "https://www.thesportsdb.com/api/v1/json/3/search_all_seasons.php?id=" + newValue.getIdLeague();
+                try {
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    JSONObject jsonObject = new JSONObject(bufferedReader.readLine());
+                    JSONArray results = jsonObject.getJSONArray("seasons");
+                    for (int i = 0; i < results.length(); i++) {
+                        JSONObject seasson = results.getJSONObject(i);
+                        String seassonStr = seasson.getString("strSeason");
+                        listaLigasListView.add(seassonStr);
+                    }
+                } catch (IOException e) {
 
+                }
 
             }
         });
-        listViewLigas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Liga>() {
+        tablaClasificacion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Equipo>() {
             @Override
-            public void changed(ObservableValue observable, Liga oldValue, Liga newValue) {
+            public void changed(ObservableValue<? extends Equipo> observable, Equipo oldValue, Equipo newValue) {
+                // System.out.println(newValue.getStrDescription());
+                // System.out.println(newValue.getStrBadge());
+                imagenDetalle.setImage(new Image(newValue.getStrBadge()));
+            }
+        });
+        /*listViewLigas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue observable, String oldValue, String newValue) {
                 System.out.println(newValue);
             }
-        });
+        });*/
     }
 
     private void instancias() {
+        listaEquiposTabla = FXCollections.observableArrayList(); // []
         listaLigasCombo = FXCollections.observableArrayList(); // []
         listaLigasListView = FXCollections.observableArrayList(); // []
         comboLigas.setItems(listaLigasCombo);
         listViewLigas.setItems(listaLigasListView);
+        tablaClasificacion.setItems(listaEquiposTabla);
+        columnaPuesto.setCellValueFactory(new PropertyValueFactory<>("intRank"));
+        columnaEquipo.setCellValueFactory(new PropertyValueFactory<>("strTeam"));
+        columnaPuntos.setCellValueFactory(new PropertyValueFactory<>("intPoints"));
     }
 }
