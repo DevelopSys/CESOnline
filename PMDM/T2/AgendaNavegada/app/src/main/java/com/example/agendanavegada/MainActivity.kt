@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.agendanavegada.databinding.ActivityMainBinding
+import com.example.agendanavegada.ui.fragment.RegitroFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,8 +30,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
+            Snackbar.make(view, "¿Quieres registrar un usuario?", Snackbar.LENGTH_LONG)
+                .setAction("OK"){
+                    val ft= supportFragmentManager.beginTransaction()
+                    ft.show(RegitroFragment())
+                    ft.commit()
+
+                }
                 .setAnchorView(R.id.fab).show()
         }
     }

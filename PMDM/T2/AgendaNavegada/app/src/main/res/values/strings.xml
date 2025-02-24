@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">AgendaNavegada</string>
+
+    <string-array name="perfiles">
+        <item>Administrador</item>
+        <item>Usuario</item>
+    </string-array>
+
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
