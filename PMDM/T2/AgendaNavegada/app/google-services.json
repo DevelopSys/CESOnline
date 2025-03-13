@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "167013321269",
+    "project_id": "productosapp-1b4c6",
+    "storage_bucket": "productosapp-1b4c6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167013321269:android:57cf6c7df0ea0e129fff7c",
+        "android_client_info": {
+          "package_name": "com.example.agendanavegada"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvxqmSM1vfJ4o4GkFRhERNN-uYcGFyyxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

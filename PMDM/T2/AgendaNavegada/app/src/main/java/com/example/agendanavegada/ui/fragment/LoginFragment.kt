@@ -26,13 +26,16 @@ class LoginFragment: Fragment() {
 
     override fun onStart() {
         super.onStart()
+        binding.textView.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_regitroFragment)
+        }
         binding.botonLogin.setOnClickListener {
             if (binding.editNombre.text.toString().equals("borja@gmail.com") && binding.editPass.text.toString().equals("1234")){
                 findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
             } else {
                 Snackbar.make(binding.root, "Usuario no encontrado, ¿Quieres registrar un usuario?", Snackbar.LENGTH_LONG)
                     .setAction("OK"){
-                        findNavController().navigate(R.id.action_loginFragment_to_regitroFragment)
+
                     }
                     .setAnchorView(R.id.fab).show()
             }
