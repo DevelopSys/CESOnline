@@ -14,6 +14,14 @@
         android:layout_marginTop="64dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="indica la nombre"
+        android:id="@+id/editNombre"
+        />
+
+    <EditText
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="indica el correo"
         android:inputType="textEmailAddress"
         android:id="@+id/editCorreo"
@@ -50,6 +58,14 @@
         android:layout_height="wrap_content"
         android:text="Registrar"
         android:layout_marginTop="64dp"
+        />
+
+    <Button
+        android:id="@+id/botonVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:layout_marginTop="24dp"
         />
 
 

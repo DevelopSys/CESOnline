@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<!-- <div class="container mt-4">
   <h1>Inicio Angular</h1>
   <img [src]="logo" style="width: 30%" />
   <input
@@ -6,8 +6,7 @@
     class="form-control"
     [(ngModel)]="nombre"
   />
-  <!-- #input
-    (keyup)="detectarPulsacion($event)" -->
+
   <input
     placeholder="introduce tu apellido"
     class="form-control"
@@ -26,12 +25,45 @@
     asignatura {{ asignatura }}
   </p>
 
-  <!-- en js tendria que hacer? querySelector variable.textContent = XXXXX -->
-  <!-- en js tendria que hacer? querySelector.addEventListener() variable.textContent = XXXXX -->
   <h2>Los componentes son:</h2>
 
   <div class="row">
     <app-home class="col mt-4"></app-home>
     <app-list class="col mt-4"></app-list>
   </div>
+</div>
+ -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['home']" aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['list']">List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['detail', 24]">Detail</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

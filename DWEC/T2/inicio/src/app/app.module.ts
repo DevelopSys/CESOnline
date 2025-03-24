@@ -9,9 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, DetailComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],

@@ -11,19 +11,22 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.agendanavegada.databinding.ActivityMainBinding
 import com.example.agendanavegada.ui.fragment.RegitroFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
+
+        auth = FirebaseAuth.getInstance();
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -52,7 +55,20 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                true
+            }
+            R.id.menuCerrarSesion -> {
+
+                if (auth.currentUser == null){
+                    Snackbar.make(binding.root,"Incia sesion primero", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    auth.signOut()
+                    findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_mainFragment_to_loginFragment)
+                }
+
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

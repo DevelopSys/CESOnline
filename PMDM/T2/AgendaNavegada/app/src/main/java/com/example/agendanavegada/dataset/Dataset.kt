@@ -16,7 +16,7 @@ class DataSet {
 
 
         fun comprobarLogin(correo: String, pass: String): Usuario? {
-            return lista.find{ it.nombre.equals(correo) && it.pass.equals(pass) };
+            return lista.find{ it.nombre.equals(correo)  };
         }
 
         fun insertarUsuario(nombre: String, pass: String, perfil: String): Unit {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent {
   logo =
     'https://angular.dev/assets/images/press-kit/angular_wordmark_gradient.png';
 
+  constructor(private navegador: Router) {}
+
   mostrarNombre(nombre: string) {
     this.nombre = nombre;
   }
@@ -28,5 +31,9 @@ export class AppComponent {
     this.nombre = '';
     this.apellido = '';
     this.genero = '';
+  }
+
+  navegar() {
+    this.navegador.navigate(['detail', 23]);
   }
 }

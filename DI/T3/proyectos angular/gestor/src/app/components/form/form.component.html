@@ -1,0 +1,46 @@
+<!-- introduccion de datos -->
+<h2>Formulario de datos</h2>
+<img [src]="logo" style="width: 40%; height: 50%" />
+<p>Este componente lo utilizaremos para poder introducir datos en el sistema</p>
+<p>
+  Este componente nos sirve para ver el binding en la aplicacion
+  {{ nombreApp }} en la asignatura {{ asignatura }}
+</p>
+
+<div class="row">
+  <div class="col">
+    <input
+      [(ngModel)]="nombre"
+      type="text"
+      placeholder="introduce nombre"
+      class="form-control mb-4"
+    />
+    <input
+      [(ngModel)]="apellido"
+      type="text"
+      placeholder="introduce apellido"
+      class="form-control mb-4"
+    />
+    <input
+      [(ngModel)]="telefono"
+      type="number"
+      placeholder="introduce telefono"
+      class="form-control mb-4"
+    />
+    <input
+      [(ngModel)]="fecha"
+      type="date"
+      placeholder="introduce fecha nacimiento"
+      class="form-control mb-4"
+    />
+    <button class="btn btn-primary" (click)="enviarDatos()">Enviar</button>
+  </div>
+  <div class="col">
+    <p>El numero de usuarios es {{ usuarios.length }}, y sus datos son</p>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of usuarios">
+        {{ item.nombre }} {{ item.apellido }} {{ item.telefono }}
+      </li>
+    </ul>
+  </div>
+</div>
