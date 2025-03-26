@@ -19,6 +19,10 @@ export class FormComponent {
   nombreApp = 'Gestor CES';
   asignatura = 'Desarrollo interfaces';
   numero = 0;
+  busqueda = '';
+  usuariosBusqueda?: usuario[];
+  selectOpcion = '1';
+  selectOptionNumber = 1;
 
   nombre: string = '';
   apellido: string = '';
@@ -30,6 +34,17 @@ export class FormComponent {
   asociarElemento(numero: string) {
     console.log('Pulsado asociar');
     this.numero = Number(numero);
+  }
+
+  realizarBusqueda() {
+    this.usuariosBusqueda = this.usuarios.filter((usuario) => {
+      // return el usuario que cumpla la condicion
+      return usuario.nombre == this.busqueda;
+    });
+
+    setTimeout(() => {
+      this.usuariosBusqueda = undefined;
+    }, 5000);
   }
 
   enviarDatos() {
@@ -68,5 +83,10 @@ export class FormComponent {
     this.apellido = '';
     this.telefono = '';
     this.fecha = new Date();
+  }
+
+  cambioSelect($event: Event) {
+    console.log(typeof ($event.target as HTMLInputElement).value);
+    this.selectOptionNumber = Number(($event.target as HTMLInputElement).value);
   }
 }

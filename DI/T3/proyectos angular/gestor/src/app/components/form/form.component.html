@@ -38,9 +38,74 @@
   <div class="col">
     <p>El numero de usuarios es {{ usuarios.length }}, y sus datos son</p>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of usuarios">
+      <li
+        class="list-group-item"
+        *ngFor="let item of usuarios"
+        [ngClass]="{
+          'list-group-item-primary': item.nombre.length < 3,
+          'list-group-item-warning': item.nombre.length < 7 && item.nombre.length >= 3,
+          'list-group-item-danger': item.nombre.length >= 7,
+        }"
+      >
+        <!-- [ngStyle]="{ color: 'white', 'background-color': 'black' }" -->
         {{ item.nombre }} {{ item.apellido }} {{ item.telefono }}
       </li>
     </ul>
+  </div>
+  <div class="col">
+    <h2>Buscador</h2>
+    <input
+      type="text"
+      placeholder="introduce busqueda"
+      class="form-control mb-4"
+      [(ngModel)]="busqueda"
+    />
+    <button class="btn btn-primary mb-4" (click)="realizarBusqueda()">
+      Buscar
+    </button>
+
+    <ng-container *ngIf="usuariosBusqueda != undefined; else elseTemplate">
+      <div class="alert alert-primary" role="alert">
+        El resultado de la busqueda son {{ usuariosBusqueda.length }}
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="alert alert-success" role="alert">
+        Por favor pulsa el boton para realizar busquedas
+      </div>
+    </ng-template>
+  </div>
+  <div class="col">
+    <h2>Busqueda mostrada</h2>
+    <select
+      class="form-select"
+      [(ngModel)]="selectOpcion"
+      (change)="cambioSelect($event)"
+    >
+      <option value="1">Opcion 1</option>
+      <option value="2">Opcion 2</option>
+      <option value="3">Opcion 3</option>
+      <option value="4">Opcion 4</option>
+      <option value="5">Opcion 5</option>
+      <option value="6">Opcion 6</option>
+    </select>
+
+    <div [ngSwitch]="selectOptionNumber">
+      <div class="alert alert-primary" *ngSwitchCase="1" role="alert">
+        Opcion seleccionada 1
+      </div>
+      <div class="alert alert-primary" *ngSwitchCase="2" role="alert">
+        Opcion seleccionada 2
+      </div>
+      <div class="alert alert-primary" *ngSwitchCase="3" role="alert">
+        Opcion seleccionada 3
+      </div>
+      <div class="alert alert-primary" *ngSwitchCase="4" role="alert">
+        Opcion seleccionada 4
+      </div>
+      <div class="alert alert-primary" *ngSwitchDefault role="alert">
+        Opcion seleccionada no contemplada
+      </div>
+    </div>
   </div>
 </div>

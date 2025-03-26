@@ -1,1 +1,5 @@
-<p>detail works!</p>
+<h2>Detalles del usuario</h2>
+<p>Nombre: {{ usuario?.nombre }}</p>
+<p>Edad: {{ usuario?.edad }}</p>
+<p>Genero: {{ usuario?.genero }}</p>
+<p>Fecha de nacimiento: {{ usuario?.fecha | date : "dd/MM/yyyy" }}</p>

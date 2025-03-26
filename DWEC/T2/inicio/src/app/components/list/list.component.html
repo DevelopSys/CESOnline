@@ -1,56 +1,33 @@
-<h3>Selecciona que listado quieres ver</h3>
-<select class="form-select" [(ngModel)]="seleccion">
-  <option value="1">Elemento 1</option>
-  <option value="2">Elemento 2</option>
-  <option value="3">Elemento 3</option>
-  <option value="4">Elemento 4</option>
-</select>
+<h2>Los usuarios agregados en el sistema son:</h2>
+<!-- si hay datos los representas -->
+<!-- si no hay salta un aviso -->
 
-<div [ngSwitch]="seleccion">
-  <p *ngSwitchCase="'1'">Has seleccionado el valor 1</p>
-  <p *ngSwitchCase="'2'">Has seleccionado el valor 2</p>
-  <p *ngSwitchCase="'3'">Has seleccionado el valor 3</p>
-  <p *ngSwitchCase="'4'">Has seleccionado el valor 4</p>
-  <p *ngSwitchDefault>No hay seleccion</p>
-</div>
-
-<h2>Introduce los datos a guardar</h2>
-<input
-  type="text"
-  class="form-control mt-3"
-  placeholder="Introduce nombre"
-  [(ngModel)]="nombre"
-/>
-<input
-  type="number"
-  class="form-control mt-3"
-  placeholder="Introduce edad"
-  [(ngModel)]="edad"
-/>
-<input
-  type="date"
-  class="form-control mt-3"
-  placeholder="Introduce fecha"
-  [(ngModel)]="fecha"
-/>
-<select class="form-select mt-3" [(ngModel)]="genero">
-  <option>Masculino</option>
-  <option>Femenino</option>
-</select>
-
-<button class="btn btn-primary mt-3" (click)="agregarElemento()">
-  Enviar a formulario
-</button>
-<button class="btn btn-primary mt-3" (click)="borrarElemento()">
-  Borrar elemento
-</button>
-
-<ul class="list-group">
-  <!-- tantos li como elementos tenga el array -->
-  <li class="list-group-item" *ngFor="let item of usuarios">
-    Nombre: {{ item.nombre | lowercase }} Fecha: {{ item.fecha | date }}
-    <button class="btn btn-primary" (click)="eliminarUsuario(item)">
-      Eliminar
-    </button>
-  </li>
-</ul>
+<ng-container
+  *ngIf="usuarios?.length == 0 || usuarios == undefined; else elseTemplate"
+>
+  <div class="alert alert-warning" role="alert">
+    No hay usuarios en el sistema
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let item of usuarios">
+      <div class="card">
+        <img src="..." class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.nombre }}</h5>
+          <p class="card-text">
+            {{ item.genero | uppercase }}
+            {{ item.fecha | date : "dd/MM/yyyy" }}
+          </p>
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/detail', item.nombre]"
+          >
+            Ver detalle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
