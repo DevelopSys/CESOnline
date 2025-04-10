@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../model/clases';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +9,7 @@ import { Usuario } from '../model/clases';
 export class DataService {
   private usuarios: Usuario[] = [];
 
-  constructor() {}
+  constructor(private moduloHTTP: HttpClient) {}
 
   public getUsuarios() {
     return this.usuarios;

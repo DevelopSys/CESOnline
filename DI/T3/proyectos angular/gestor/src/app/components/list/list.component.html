@@ -1,0 +1,20 @@
+<ng-container *ngIf="usuarios.length > 0; else elseTemplate">
+  <p>El numero de usuarios es {{ usuarios.length }}, y sus datos son</p>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of usuarios">
+      <!-- [ngStyle]="{ color: 'white', 'background-color': 'black' }" -->
+      {{ item.nombre }} {{ item.apellido }} {{ item.telefono }}
+    </li>
+  </ul>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="alert alert-warning" role="alert">
+    Aín no hay usuarios en la lista
+  </div>
+</ng-template>
+
+<!-- [ngClass]="{
+    'list-group-item-primary': item.nombre.length < 3,
+    'list-group-item-warning': item.nombre.length < 7 && item.nombre.length >= 3,
+    'list-group-item-danger': item.nombre.length >= 7,
+  }" -->

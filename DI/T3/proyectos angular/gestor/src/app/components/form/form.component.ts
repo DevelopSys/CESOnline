@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { usuario } from '../../model/usuario';
 import { CommonModule } from '@angular/common';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-form',
@@ -29,7 +30,7 @@ export class FormComponent {
   telefono: string = '';
   fecha: Date = new Date();
 
-  usuarios: usuario[] = [];
+  constructor(private usuariosService: UsuariosService) {}
 
   asociarElemento(numero: string) {
     console.log('Pulsado asociar');
@@ -37,14 +38,14 @@ export class FormComponent {
   }
 
   realizarBusqueda() {
-    this.usuariosBusqueda = this.usuarios.filter((usuario) => {
+    /* this.usuariosBusqueda = this.usuarios.filter((usuario) => {
       // return el usuario que cumpla la condicion
       return usuario.nombre == this.busqueda;
     });
 
     setTimeout(() => {
       this.usuariosBusqueda = undefined;
-    }, 5000);
+    }, 5000); */
   }
 
   enviarDatos() {
@@ -68,7 +69,7 @@ export class FormComponent {
         timer: 3000,
       });
 
-      this.usuarios.push({
+      this.usuariosService.addUsuario({
         nombre: this.nombre,
         apellido: this.apellido,
         telefono: Number(this.telefono),

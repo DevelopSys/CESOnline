@@ -11,10 +11,21 @@ import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { FormComponent } from './components/form/form.component';
+import { ImagenesPipe } from './pipe/imagenes.pipe';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ApiComponent } from './components/api/api.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, DetailComponent, FormComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ListComponent,
+    DetailComponent,
+    FormComponent,
+    ImagenesPipe,
+    ApiComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],
 })

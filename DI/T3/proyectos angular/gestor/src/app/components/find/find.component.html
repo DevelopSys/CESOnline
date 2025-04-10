@@ -1,0 +1,25 @@
+<input
+  placeholder="por favor introduce el nombre a buscar"
+  type="text"
+  [(ngModel)]="nombreBusqueda"
+  class="form-control"
+/>
+
+<button class="btn btn-primary mt-4" (click)="realizarBusqueda()">
+  Buscar
+</button>
+
+<ng-container *ngIf="this.usuarios.length > 0; elseTemplate">
+  <div class="alert alert-warning" role="alert">
+    El numero de resultados es {{ usuarios.length }}
+  </div>
+
+  <ul class="list-group mt-4">
+    <li *ngFor="let item of usuarios">{{ item.nombre }} {{ item.apellido }}</li>
+  </ul>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="alert alert-warning" role="alert">
+    No hay usuarios en la lista filtada
+  </div>
+</ng-template>

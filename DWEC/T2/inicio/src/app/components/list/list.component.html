@@ -12,10 +12,26 @@
 <ng-template #elseTemplate>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col" *ngFor="let item of usuarios">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
+      <!-- si tienes una edad inferior a 18, el borde lo pongo verde border-success-->
+      <!-- si tienes una edad  entre 18 y 29, el borde lo pongo azul border-primary-->
+      <!-- si tienes una edad  entre 30 y 60, el borde lo pongo naranja border-warning-->
+      <!-- si tienes una edad  >=60, el borde lo pongo rojo border-danger-->
+      <div
+        class="card"
+        [ngClass]="{
+          'border-success': item.edad < 18,
+          'border-primary': item.edad >=18 && item.edad< 30,
+          'border-warning': item.edad>=30 && item.edad < 60,
+          'border-danger': item.edad >= 60,
+        }"
+      >
+        <!-- [ngStyle]="{
+        'font-size: 30px': item.edad < 18,
+        'font-size: 60px': item.edad > 18
+      }" -->
+        <img [src]="item | imagenes : 1" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ item.nombre }}</h5>
+          <h5 class="card-title">{{ item.nombre }} {{ item.edad }}</h5>
           <p class="card-text">
             {{ item.genero | uppercase }}
             {{ item.fecha | date : "dd/MM/yyyy" }}

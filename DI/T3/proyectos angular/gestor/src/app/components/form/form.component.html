@@ -35,23 +35,7 @@
     />
     <button class="btn btn-primary" (click)="enviarDatos()">Enviar</button>
   </div>
-  <div class="col">
-    <p>El numero de usuarios es {{ usuarios.length }}, y sus datos son</p>
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let item of usuarios"
-        [ngClass]="{
-          'list-group-item-primary': item.nombre.length < 3,
-          'list-group-item-warning': item.nombre.length < 7 && item.nombre.length >= 3,
-          'list-group-item-danger': item.nombre.length >= 7,
-        }"
-      >
-        <!-- [ngStyle]="{ color: 'white', 'background-color': 'black' }" -->
-        {{ item.nombre }} {{ item.apellido }} {{ item.telefono }}
-      </li>
-    </ul>
-  </div>
+  <!-- 
   <div class="col">
     <h2>Buscador</h2>
     <input
@@ -107,5 +91,5 @@
         Opcion seleccionada no contemplada
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
